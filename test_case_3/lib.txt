@@ -1,0 +1,25 @@
+# Test Case 3: Detailed Libraries Used
+
+1. PyMuPDF (fitz)
+   - **Core Engine Component**: Used for ultra-fast word-coordinate extraction (`get_text_words`).
+   - Slices PDFs for benchmarking and extracts raw text for metadata detection.
+
+2. Python 're' (Standard Library)
+   - **Core Engine Component**: Powering the `parser.py` and `detector.py`.
+   - Used for regex-based pattern matching (Dates, Amounts, Account Numbers) and layout identification.
+
+3. pandas
+   - Used as the container for structured transaction data.
+   - Handles the conversion of raw lists into formatted DataFrames for export.
+
+4. XlsxWriter
+   - Specialized Excel engine for highly-formatted production reports.
+   - Implemented to place bank metadata at the top of the sheet and auto-adjust column widths.
+
+5. psutil
+   - Monitors system resources during execution.
+   - Records the CPU footprint of the custom rule-based engine during benchmarking.
+
+6. matplotlib
+   - Visualizes the performance metrics.
+   - Highlights the sub-second processing speed of the custom engine relative to page count.

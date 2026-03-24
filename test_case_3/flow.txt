@@ -1,0 +1,36 @@
+# Test Case 3: Program Flow (Custom Engine)
+
+1. [Initialization]
+   - Step: Load PDF and initialize extraction pipeline.
+   - Lib: os / fitz
+   - Output: Open document handle.
+
+2. [Coordinate-Based Extraction]
+   - Step: Extract every word on the page along with its precise X0, Y0, X1, Y1 coordinates.
+   - Lib: PyMuPDF (fitz)
+   - Output: List of tuples -> (x0, y0, x1, y1, "text").
+
+3. [Row Reconstruction]
+   - Step: Group words into horizontal lines by checking if they share a similar Y-coordinate (within a small threshold).
+   - Lib: engine/row_builder.py (Custom Logic)
+   - Output: 1D list of text strings representing the physical lines on the page.
+
+4. [Column Mapping (SBI Rule)]
+   - Step: For each row, map words to specific columns [Date, ValueDate, Desc, Debit, Credit, Balance] based on their X-start position.
+   - Lib: engine/parser.py (Regex + Logic)
+   - Output: List of lists containing the 6 standardized fields.
+
+5. [Metadata Discovery]
+   - Step: Scan the first page text for Account Name/Number using regex patterns.
+   - Lib: engine/detector.py (re)
+   - Output: Metadata dictionary.
+
+6. [Transaction Aggregation]
+   - Step: Merge multi-line rows (descriptions without a date) into the previous fully-formed transaction.
+   - Lib: pandas
+   - Output: Final DataFrame with consolidated descriptions and valid amounts.
+
+7. [Unified Export]
+   - Step: Create a single 'Statement' sheet containing Metadata at the top and the Transaction table starting at Row 8, with auto-width columns.
+   - Lib: XlsxWriter
+   - Output: 'output/excel/*.xlsx'

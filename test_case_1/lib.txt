@@ -1,0 +1,29 @@
+# Test Case 1: Detailed Libraries Used
+
+1. pdfplumber
+   - Used for structural table extraction and coordinate-based text retrieval.
+   - Primary engine for boundary detection and identifying cell contents.
+
+2. PyMuPDF (fitz)
+   - Used for high-speed text extraction and metadata retrieval.
+   - Used in benchmarking to slice PDFs into specific page ranges.
+
+3. PaddleOCR
+   - Deep-learning OCR engine used as fallout for scanned or image-based PDFs.
+   - Ensures data extraction even when text layers are missing.
+
+4. pandas
+   - Core data structure for handling transaction rows.
+   - Manages column mapping and cleaning before export.
+
+5. XlsxWriter
+   - Specialized Excel engine for producing formatted reports.
+   - Handles cell styling, header colors, and multi-sheet workbooks.
+
+6. psutil
+   - System monitoring library used to capture real-time CPU and Memory percent.
+   - Fundamental for the performance benchmarking suite.
+
+7. matplotlib
+   - Plotting library used to generate 'analysis_graph.png'.
+   - Visualizes the relationship between page count, time, and CPU usage.

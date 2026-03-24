@@ -1,0 +1,28 @@
+# Test Case 2: Detailed Libraries Used
+
+1. Camelot-py [base]
+   - The primary table extraction engine (using 'stream' flavor).
+   - Ideal for multi-page PDF tables with distinct vertical/horizontal borders.
+
+2. python-doctr
+   - Cutting-edge Deep Learning OCR library used as a fallback.
+   - Implemented to resolve cases where Camelot returns empty results (e.g., scanned documents).
+
+3. PyMuPDF (fitz)
+   - Used for metadata extraction and PDF page manipulation.
+   - Essential for the benchmarking suite to slice the real PDF into specific page counts (1, 8, 16, 24, 32, 50).
+
+4. Polars
+   - High-performance DataFrame library (faster alternative to pandas).
+   - Used for efficient data cleaning and preparing the transaction list for export.
+
+5. XlsxWriter
+   - Excel engine used to create the final transaction reports.
+   - Handles custom header styling and metadata placement.
+
+6. psutil
+   - Used for granular system monitoring.
+   - Captures process-specific CPU usage during benchmarking.
+
+7. matplotlib
+   - Generates the dual-panel performance visualization (Time vs. Pages and CPU vs. Pages).

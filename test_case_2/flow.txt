@@ -1,0 +1,36 @@
+# Test Case 2: Program Flow
+
+1. [Input Handling]
+   - Step: Identify all PDFs for processing.
+   - Lib: os/glob
+   - Output: List of target PDFs.
+
+2. [Initial Analysis]
+   - Step: Get page count and slice PDF for benchmarking (if pages=N is passed).
+   - Lib: PyMuPDF (fitz)
+   - Output: Metadata and temporary .pdf slice.
+
+3. [Table Extraction]
+   - Step: Detect and extract tables using the 'stream' flavor (spacing-biased).
+   - Lib: Camelot-py
+   - Output: list of Camelot 'Table' objects.
+
+4. [Deep Learning OCR (Fallback)]
+   - Step: Run OCR on pages that lack a text layer or structured table objects.
+   - Lib: python-doctr
+   - Output: Raw transaction rows from image-based data.
+
+5. [High-Speed Data Processing]
+   - Step: Collapse multi-line descriptions and handle global column-mapping persistence across pages.
+   - Lib: Polars
+   - Output: Normalized transaction table with row-level integrity.
+
+6. [Formatted Reporting]
+   - Step: Generate a professional Excel file with custom styles and metadata headers.
+   - Lib: XlsxWriter
+   - Output: 'output/excel/Statement.xlsx'
+
+7. [Final Summary]
+   - Step: Produce a machine-readable JSON summary of the entire document.
+   - Lib: json
+   - Output: 'output/json/Statement.json'

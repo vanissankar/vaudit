@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.env
+.DS_Store
+Sequential/output/
+Threads/output/
+analysis_graph.png

@@ -1,0 +1,41 @@
+# Test Case 1: Program Flow
+
+1. [Input Discovery]
+   - Step: Scan 'Sequential/input/' directory for PDF files.
+   - Lib: os/glob
+   - Output: List of file paths.
+
+2. [Metadata Extraction]
+   - Step: Read the first page to detect Bank Name, Account Number, etc.
+   - Lib: PyMuPDF (fitz)
+   - Output: Metadata dictionary and Total Page Count.
+
+3. [Primary Table Parsing]
+   - Step: Extract tabular data from each page using structural boundaries.
+   - Lib: pdfplumber
+   - Output: Raw 2D list (rows and columns) of strings.
+
+4. [OCR Fallback (If Managed)]
+   - Step: If Step 3 returns empty (scanned PDF), convert page to image and run OCR.
+   - Lib: PaddleOCR
+   - Output: Extracted text blocks/rows.
+
+5. [Data Normalization]
+   - Step: Clean strings, remove garbage characters, and map column indices to [Date, Desc, Debit, Credit, Bal].
+   - Lib: pandas
+   - Output: Cleaned pandas DataFrame.
+
+6. [Summary Logic]
+   - Step: Calculate total credits, debits, and verify the final balance.
+   - Lib: Python arithmetic (summing DataFrame columns)
+   - Output: Summary metrics (Total In/Out).
+
+7. [Excel Export]
+   - Step: Write metadata to top rows and transactions to the table below.
+   - Lib: XlsxWriter
+   - Output: 'output/excel/*.xlsx'
+
+8. [JSON Export]
+   - Step: Save final metrics and metadata for downstream systems.
+   - Lib: json (standard lib)
+   - Output: 'output/json/*.json'

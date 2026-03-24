@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*$py.class
+output/
+analysis_graph.png
+analysis.md
+benchmark_results.json
+_tmp_dummy_*.pdf
+*.xlsx
