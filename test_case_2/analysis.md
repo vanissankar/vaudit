@@ -13,8 +13,8 @@
 ![Pages vs Time vs CPU](analysis_graph.png)
 
 ## Observations
-- Sequential Average Time : 9.79s across page sizes [1, 8, 16, 24, 32, 50]
-- Threaded Average Time   : 10.36s across page sizes [1, 8, 16, 24, 32, 50]
+- Sequential Average Time : 7.40s across page sizes [1, 8, 16, 24, 32, 50]
+- Threaded Average Time   : 7.24s across page sizes [1, 8, 16, 24, 32, 50]
 - CPU usage scales roughly linearly with page count for both modes.
 - docTR OCR fallback (not triggered for this PDF) would cause large time spikes.
 
@@ -30,4 +30,4 @@
 - **Batch workloads:** Directories with many PDFs benefit greatly — each file runs in its own thread.
 
 ## Final Conclusion
-Sequential processing matched or outperformed threading across small page counts. For large documents (50+ pages) multithreading begins to show a measurable advantage as I/O-bound Camelot table reads benefit from concurrent execution.
+Threaded processing outperformed sequential across the tested page range, confirming that the ThreadPoolExecutor effectively parallelises Camelot table parsing and JSON/Excel I/O for multi-page bank statements.

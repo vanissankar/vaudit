@@ -13,8 +13,8 @@
 ![Pages vs Time vs CPU](analysis_graph.png)
 
 ## Observations
-- Sequential Average Time: 3.04 seconds across test sizes
-- Threaded Average Time: 3.19 seconds across test sizes
+- Sequential Average Time: 3.25 seconds across test sizes
+- Threaded Average Time: 3.61 seconds across test sizes
 - CPU usage scales linearly with thread worker count, but caps out at maximum cores assigned.
 - PaddleOCR initialization (fallback) could cause huge spikes in time for both approaches if activated.
 

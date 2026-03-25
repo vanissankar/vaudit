@@ -157,7 +157,11 @@ def main():
     plt.title('Pages vs CPU Usage')
     plt.legend(); plt.grid(True)
     
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
+    # Add library list footer
+    libs_text = "Libraries: PyMuPDF (fitz), re (regex), pandas, xlsxwriter, psutil, matplotlib"
+    plt.figtext(0.5, 0.02, libs_text, ha="center", fontsize=9, bbox={"facecolor":"gray", "alpha":0.1, "pad":5})
+
     graph_path = 'analysis_graph.png'
     plt.savefig(os.path.join(base_dir, graph_path))
     logging.info(f"Saved graph to {graph_path}")
